@@ -1,9 +1,10 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../context";
 
 export default function Navbar() {
   const { searchItem, setSearchItem, handleSubmit } = useContext(GlobalContext);
+  const navigate = useNavigate();
 
   return (
     <nav className="sticky top-0 p-4 z-50 bg-white flex flex-col gap-2 justify-between items-center bg-transparent sm:flex-row">
@@ -16,6 +17,7 @@ export default function Navbar() {
         onKeyDown={(event) => {
           if (event.key === "Enter") {
             handleSubmit();
+            navigate("/");
           }
         }}
         placeholder="Search food recipe"

@@ -52,6 +52,16 @@ export default function Favourites() {
                 >
                   Go to original page →
                 </a>
+                <button
+                  onClick={() => {
+                    let temp = [...favourites];
+                    temp.splice(i, 1);
+                    setFavourites(temp);
+                  }}
+                  className="bg-black text-sm sm:text-lg font-bold sm:font-normal text-white px-4 py-1.5 rounded-lg shadow-md"
+                >
+                  Remove from Favourites
+                </button>
               </div>
             </div>
           );

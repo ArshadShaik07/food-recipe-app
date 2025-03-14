@@ -20,13 +20,18 @@ export default function Details() {
   }
   // some problem with handleClick function check later
   function handleClick() {
-    let temp = favourites || [];
-    for (let fav of temp) {
-      if (fav.id === id) return;
+    let temp = [...(favourites || [])];
+    for (let i = 0; i < favourites.length; i++) {
+      if (temp[i].id === recipeDetails.id) {
+        temp.splice(i, 1);
+        setFavourites(temp);
+        console.log(temp, "favourites");
+        return;
+      }
     }
     temp.push(recipeDetails);
     setFavourites(temp);
-    console.log(temp);
+    console.log(temp, "favourites");
   }
 
   useEffect(() => {
@@ -68,7 +73,9 @@ export default function Details() {
           onClick={handleClick}
           className="bg-black text-sm sm:text-lg font-bold sm:font-normal text-white px-4 py-1.5 rounded-lg shadow-md"
         >
-          Add to Favourites
+          {favourites.some((fav) => fav.id === recipeDetails.id)
+            ? "Added to favourites"
+            : "Add to favourites"}
         </button>
       </div>
     </div>
